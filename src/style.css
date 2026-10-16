@@ -1,0 +1,96 @@
+/* Headings use Anca and body text Myriad Pro when installed; Patrick Hand SC and
+   Source Sans 3 (Google Fonts, loaded in index.html) stand in otherwise. */
+:root { --violet:#8a3fd1; }
+body { margin:0; background:#fff; color:#1d1d1f; font-family:'Myriad Pro', 'Source Sans 3', system-ui, sans-serif; }
+.hand { font-family:'Anca', 'Patrick Hand SC', cursive; letter-spacing:.02em; }
+.tp { text-decoration:none; border-bottom:3px solid var(--c); padding-bottom:1px; }
+
+.mockbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding:10px 22px; background:#f5f5f7; border-bottom:1px solid #e3e3e8; }
+.mockbar .lab { margin-right:4px; }
+.mockbar a { font:600 14px 'Myriad Pro', 'Source Sans 3', system-ui, sans-serif; padding:8px 16px; border-radius:999px; border:2px solid #d1d1d6; background:#fff; color:#1d1d1f; text-decoration:none; }
+.mockbar a.on { border-color:#9b7fd1; background:#f3e9ff; color:#5a3d8a; }
+
+.page { max-width:1200px; margin:0 auto; font-size:13px; line-height:1.45; }
+.page .nav { display:flex; gap:18px; align-items:center; padding:10px 22px; border-bottom:1px solid #eee; font-size:12px; color:#555; }
+.page .nav b { color:#1b2a4a; margin-right:auto; }
+.page .head { display:flex; gap:26px; align-items:center; padding:18px 22px 6px; }
+.page .back { font-size:12px; color:var(--violet); font-weight:600; text-decoration:none; }
+.page .intro h1 { font-family:'Anca', 'Patrick Hand SC', cursive; font-weight:400; font-size:30px; line-height:1.1; margin:6px 0 8px; letter-spacing:.02em; }
+.page .stats { display:flex; gap:18px; font-size:12px; color:#555; }
+
+.page .body { display:flex; gap:18px; padding:12px 22px 18px; align-items:flex-start; }
+.rail { width:96px; flex:none; display:flex; flex-direction:column; gap:7px; align-items:center; }
+.rail .lab { margin-bottom:2px; }
+.lab { font-size:10px; text-transform:uppercase; letter-spacing:.07em; color:#999; font-weight:700; }
+/* Theme bubbles use the Subtext_bubbles.svg art; the selected one gets a purple ring. */
+.ring { border-radius:50%; padding:0; background:url('./assets/bubble.svg') center / 100% 100% no-repeat; display:inline-block; flex:none; cursor:pointer; border:0; }
+.ring > span { box-sizing:border-box; width:100%; height:100%; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; font-family:'Anca', 'Patrick Hand SC', cursive; line-height:1; color:#222; padding:4px; }
+.ring.on { box-shadow:0 0 0 3px #9b7fd1; }
+.ring.all > span { font-weight:700; }
+.toggle { font-size:10px; color:#555; text-align:center; border:1px solid #e5d9f5; border-radius:10px; padding:6px 4px; margin-top:4px; cursor:pointer; user-select:none; }
+.toggle i { display:block; margin:4px auto 0; width:24px; height:13px; border-radius:7px; background:#9b7fd1; position:relative; transition:background .2s; }
+.toggle i::after { content:''; position:absolute; right:2px; top:2px; width:9px; height:9px; border-radius:50%; background:#fff; transition:right .2s; }
+.toggle.off i { background:#ccc; } .toggle.off i::after { right:13px; }
+
+.grid { flex:1; display:grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:12px; }
+.divider { grid-column:1/-1; display:flex; align-items:center; gap:10px; margin:6px 0 0; }
+.divider::after { content:''; flex:1; height:2px; background: linear-gradient(90deg,#e85a6a,#f6d55c,#7cc576,#5bb4d9,#9b7fd1); opacity:.5; border-radius:2px; }
+
+/* flip card */
+.fcard { perspective:1400px; cursor:pointer; }
+.fcard:focus-visible { outline:3px solid #9b7fd1; outline-offset:3px; border-radius:16px; }
+.fcard .inner { position:relative; width:100%; height:100%; transition:transform .6s; transform-style:preserve-3d; }
+.fcard.flipped .inner { transform:rotateY(180deg); }
+/* The front sets the card's height (rows match their tallest front); the back overlays it. */
+.face.front { position:relative; height:100%; min-height:275px; }
+.face.back { position:absolute; inset:0; }
+/* When flipped, the back takes over the layout so the card grows to show every citation. */
+.fcard.flipped .face.front { position:absolute; inset:0; height:auto; }
+.fcard.flipped .face.back { position:relative; inset:auto; min-height:275px; }
+.face { box-sizing:border-box; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:16px; padding:12px 14px; display:flex; flex-direction:column; border:2px solid transparent; background: linear-gradient(#fff,#fff) padding-box, linear-gradient(90deg,#e85a6a,#f6d55c,#7cc576,#5bb4d9,#9b7fd1) border-box; }
+.fcard.ext .face.front { background: linear-gradient(#fcfaff,#fcfaff) padding-box, linear-gradient(90deg,#e85a6a,#f6d55c,#7cc576,#5bb4d9,#9b7fd1) border-box; }
+.face.back { transform:rotateY(180deg); background: linear-gradient(160deg,#fbf7ff,#f2fbff) padding-box, linear-gradient(90deg,#9b7fd1,#5bb4d9,#7cc576,#f6d55c,#e85a6a) border-box; overflow-y:auto; }
+.tags { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:8px; }
+.tag { font-family:'Anca', 'Patrick Hand SC', cursive; font-size:13px; padding:2px 10px; border-radius:999px; background:#efe3ff; color:#5a3d8a; }
+.statement { font-weight:700; font-size:14.5px; line-height:1.3; color:#111; margin-bottom:10px; }
+.hl-lab { font-weight:700; color:var(--violet); font-size:13px; margin-bottom:2px; }
+.hl { font-size:13px; color:#111; }
+.spacer { flex:1; min-height:6px; }
+.fliphint { font-size:12px; color:var(--violet); font-weight:600; margin-bottom:8px; }
+.foot { display:flex; justify-content:space-between; gap:8px; font-size:11.5px; color:#444; border-top:2px dashed #cfcfd4; padding-top:8px; }
+.foot b { color:var(--violet); white-space:nowrap; }
+.back-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.back-top .hand { font-size:17px; color:#5a3d8a; }
+.back-top .x { font-size:12px; color:var(--violet); font-weight:600; }
+.exp { font-size:12px; margin:0 0 10px; color:#222; }
+.face ul { margin:4px 0 10px; padding-left:16px; font-size:11.5px; color:#333; }
+.face ul li { margin-bottom:5px; }
+.srcs .ttl { font-style:italic; }
+.srcs a { color:var(--violet); font-weight:600; text-decoration:none; }
+.srcs .todo { color:#999; font-style:italic; }
+.cons li { cursor:pointer; }
+.cons li:hover .ct { text-decoration:underline; }
+.cons .ct { font-weight:600; color:#111; }
+.cons .tp { font-size:10.5px; color:#555; white-space:nowrap; }
+.fcard.flash .face { box-shadow:0 0 0 5px rgba(155,127,209,.45); }
+
+.page .sec { padding:6px 22px 22px; }
+.page .sec h3 { font-family:'Anca', 'Patrick Hand SC', cursive; font-size:21px; font-weight:400; margin:0 0 10px; }
+.thumbs { display:flex; gap:12px; flex-wrap:wrap; }
+.thumb { width:190px; min-height:100px; border-radius:14px; background: linear-gradient(135deg,#fde7ef,#e6f6ff); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:#444; text-align:center; padding:10px; text-decoration:none; }
+.thumb span { font-weight:400; font-size:10.5px; color:#777; margin-top:4px; }
+
+/* Phones: emblem above the intro, theme bubbles in a scrolling row above the cards. */
+@media (max-width: 640px) {
+  .mockbar, .page .nav, .page .head, .page .body, .page .sec { padding-left:16px; padding-right:16px; }
+  .page .nav { flex-wrap:wrap; gap:6px 14px; }
+  .page .nav b { flex-basis:100%; }
+  .page .head { flex-direction:column; align-items:center; gap:4px; }
+  .page .stats { flex-wrap:wrap; gap:4px 18px; }
+  .page .body { flex-direction:column; align-items:stretch; }
+  .rail { width:auto; flex-direction:row; overflow-x:auto; padding:4px; }
+  .rail .lab { margin:0 2px 0 0; }
+  .toggle { margin:0; flex:none; }
+  .grid { grid-template-columns:1fr; }
+  .thumb { width:calc(50% - 6px); box-sizing:border-box; }
+}
