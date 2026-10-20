@@ -75,6 +75,13 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:'Myriad Pro', 'Sour
 .fcard.flash .face { box-shadow:0 0 0 5px rgba(155,127,209,.45); }
 
 .page .sec { padding:6px 22px 22px; }
+.figs { display:flex; gap:20px; align-items:flex-start; }
+.fig { flex:var(--ar) 1 0; min-width:0; margin:0; padding:10px; border:1px solid #e3e3e8; border-radius:14px; background:#fff; }
+.fig img { display:block; width:100%; height:auto; border-radius:8px; }
+.fig figcaption { font-size:12px; color:#555; margin-top:8px; }
+.fig figcaption b { color:#1d1d1f; }
+.fig figcaption .todo { color:#999; font-style:italic; }
+.fig figcaption a { color:var(--violet); font-weight:600; text-decoration:none; white-space:nowrap; }
 .page .sec h3 { font-family:'Anca', 'Patrick Hand SC', cursive; font-size:21px; font-weight:400; margin:0 0 10px; }
 .thumbs { display:flex; gap:12px; flex-wrap:wrap; }
 .thumb { width:190px; min-height:100px; border-radius:14px; background: linear-gradient(135deg,#fde7ef,#e6f6ff); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:#444; text-align:center; padding:10px; text-decoration:none; }
@@ -93,4 +100,6 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:'Myriad Pro', 'Sour
   .toggle { margin:0; flex:none; }
   .grid { grid-template-columns:1fr; }
   .thumb { width:calc(50% - 6px); box-sizing:border-box; }
+  .figs { flex-direction:column; }
+  .fig { flex:none; width:100%; box-sizing:border-box; }
 }

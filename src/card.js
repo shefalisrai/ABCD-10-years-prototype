@@ -13,11 +13,15 @@ export function topicLabel(key) {
 }
 
 // Authors shorten to "First et al." plus the year when the citation has one.
-function sourceItem(key) {
+export function shortAuthors(key) {
   const s = SOURCES[key]
   const year = s.authors.match(/\(\d{4}\)/)?.[0]
-  const authors = s.authors.split(',')[0] + ' et al.' + (year ? ' ' + year : '')
-  return `<li>${esc(authors)} <span class="ttl">${esc(s.title)}</span> ${esc(s.journal)} <a href="#" data-placeholder>Read →</a></li>`
+  return s.authors.split(',')[0] + ' et al.' + (year ? ' ' + year : '')
+}
+
+function sourceItem(key) {
+  const s = SOURCES[key]
+  return `<li>${esc(shortAuthors(key))} <span class="ttl">${esc(s.title)}</span> ${esc(s.journal)} <a href="https://doi.org/${s.doi}" target="_blank" rel="noopener">Read →</a></li>`
 }
 
 // A flip card: the front has the bold statement and the ABCD highlight; the back holds
@@ -25,7 +29,8 @@ function sourceItem(key) {
 export function card(id, fromOtherTopic) {
   const f = FINDINGS[id]
   const tags = f.themes.map((t) => `<span class="tag">${esc(t)}</span>`).join('')
-  const sources = f.sources.map(sourceItem).join('')
+  // Only reviews with a verified DOI are listed; the rest wait until they're published.
+  const sources = f.sources.filter((key) => SOURCES[key].doi).map(sourceItem).join('')
   const original = f.originalStudies
     ? `<li>Original studies: ${esc(f.originalStudies)}</li>`
     : '<li><span class="todo">TBD study links</span></li>'

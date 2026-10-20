@@ -1,5 +1,5 @@
 import { FINDINGS, GROUPS } from './data/findings.js'
-import { card, esc } from './card.js'
+import { card, esc, shortAuthors } from './card.js'
 import logoUrl from './assets/brain-rainbow.svg'
 
 // The Greybrainrainbow.svg logo (580 x 591 viewBox, disc centred near 290,296)
@@ -25,6 +25,17 @@ function themeRail(themes, hasConnected) {
     <button class="ring all on" data-theme="All" style="width:60px;height:60px"><span style="font-size:16px">All</span></button>
     ${bubbles.join('')}
     ${hasConnected ? '<div class="toggle" data-toggle>Show connected<i></i></div>' : ''}`
+}
+
+// Workgroup figures side by side at a shared height (each grows by its aspect ratio);
+// clicking one opens it full size in a new tab.
+function figures(list) {
+  const items = list.map((f) => `
+    <figure class="fig" style="--ar:${(f.width / f.height).toFixed(3)}">
+      <a href="${f.src}" target="_blank" rel="noopener"><img src="${f.src}" width="${f.width}" height="${f.height}" alt="${esc(f.alt)}"></a>
+      <figcaption><b>${esc(f.title)}</b> · ${f.source ? esc(shortAuthors(f.source)) : '<span class="todo">(need to put citation for images here)</span>'} <a href="${f.src}" target="_blank" rel="noopener">View full size ↗</a></figcaption>
+    </figure>`)
+  return `<div class="sec"><h3>The research at a glance</h3><div class="figs">${items.join('')}</div></div>`
 }
 
 // Renders one topic page. `goTo(id)` is called when a connected finding lives on another page.
@@ -56,6 +67,7 @@ export function renderPage(page, goTo) {
         <div class="stats">${stats}</div>
       </div>
     </div>
+    ${page.figures ? figures(page.figures) : ''}
     <div class="body">
       <div class="rail">${themeRail(themes, hasConnected)}</div>
       <div class="grid">${cards}</div>
@@ -113,6 +125,7 @@ export function renderPage(page, goTo) {
       apply()
       return
     }
+    if (e.target.closest('a[href]')) return
     const link = e.target.closest('[data-go]')
     if (link) {
       const id = link.dataset.go

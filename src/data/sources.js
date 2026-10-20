@@ -1,19 +1,24 @@
 // The ABCD 10-Year Special Issue review paper for each workgroup, keyed by topic.
+// Only reviews with a verified `doi` appear on card backs; add the DOI (checked against
+// doi.org / Crossref) once a review is published and it will show up on every card that cites it.
 export const SOURCES = {
   mh: {
-    authors: 'Baskin-Sommers, A., Zhang, Z., … McCurry, K. L., & Barch, D. M.',
+    authors: 'Baskin-Sommers, A., Gearing, D., … Barch, D. M. (2026).',
     title: 'What we have learned about adolescent mental health and where we are going after a decade with the Adolescent Brain Cognitive Development Study.',
-    journal: 'ABCD 10-Year Special Issue, Developmental Cognitive Neuroscience.',
+    journal: 'Developmental Cognitive Neuroscience, 78, 101686.',
+    doi: '10.1016/j.dcn.2026.101686',
   },
   ffc: {
     authors: 'Gonzalez, M. R., Silmi, K. P., … Tapert, S. F., & Gonzalez, R. (2026).',
-    title: 'Family, Friends, & Community Influences on Adolescent Development: A Review of Impactful Findings from the ABCD Study®.',
-    journal: 'Developmental Cognitive Neuroscience, 81, 101785. doi:10.1016/j.dcn.2026.101785',
+    title: 'Friends, family, and community influences on adolescent development: A review of impactful findings from the ABCD study®.',
+    journal: 'Developmental Cognitive Neuroscience, 81, 101785.',
+    doi: '10.1016/j.dcn.2026.101785',
   },
   gen: {
-    authors: 'Hernandez, L. M., Loughnan, R., … Agrawal, A., & ABCD Genetics Workgroup.',
+    authors: 'Hernandez, L. M., Loughnan, R., … Agrawal, A. (2026).',
     title: 'A decade of discovery: Leveraging genomic data in the ABCD study to illuminate adolescent neurodevelopment.',
-    journal: 'ABCD 10-Year Special Issue.',
+    journal: 'Developmental Cognitive Neuroscience, 79, 101723.',
+    doi: '10.1016/j.dcn.2026.101723',
   },
   img: {
     authors: 'Garavan, H., Hagler, D. J., … Chaarani, B., & Casey, B. J.',
@@ -21,19 +26,22 @@ export const SOURCES = {
     journal: 'ABCD 10-Year Special Issue.',
   },
   env: {
-    authors: 'Cardenas-Iniguez, C., Abad, S., … Pacula, R. L., & Herting, M. M.',
+    authors: 'Cardenas-Iniguez, C., Abad, S., … Pacula, R. L., & Herting, M. M. (2026).',
     title: 'Environmental Influences using Linked External Data in ABCD: A Review of the First Decade.',
-    journal: 'ABCD 10-Year Special Issue.',
+    journal: 'PsyArXiv preprint.',
+    doi: '10.31234/osf.io/ykt3e_v2',
   },
   edu: {
-    authors: 'Thompson, E. L., Sawi, O. M., … McCandliss, B. D., & Hoffman, E. A.',
+    authors: 'Thompson, E. L., Sawi, O. M., … McCandliss, B. D., & Hoffman, E. A. (2026).',
     title: 'From school climate to brain development: What the ABCD study reveals about the educational context of adolescence.',
-    journal: 'ABCD 10-Year Special Issue.',
+    journal: 'Developmental Cognitive Neuroscience, 80, 101746.',
+    doi: '10.1016/j.dcn.2026.101746',
   },
   dw: {
-    authors: 'Alexander, J. D., Mills, S., … Fuemmeler, B. F., & Wade, N. E.',
-    title: 'A Systematic Review of Digital and Wearable Sensor Data in the ABCD Study: Insights, Methods, and Emerging Opportunities.',
-    journal: 'ABCD 10-Year Special Issue.',
+    authors: 'Alexander, J. D., Mills, S., … Fuemmeler, B. F., & Wade, N. E. (2026).',
+    title: 'A systematic review of digital and wearable sensor data in the ABCD study: Insights, methods, and emerging opportunities.',
+    journal: 'Developmental Cognitive Neuroscience, 82, 101826.',
+    doi: '10.1016/j.dcn.2026.101826',
   },
   ph: {
     authors: 'Rhee, K. E., Adise, S., Baker, F. C., … Sowell, E. R., & Yurgelun-Todd, D.',
