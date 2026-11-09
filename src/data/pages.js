@@ -1,10 +1,17 @@
 import suPublications from '../assets/su-publications.png'
 import suPredictors from '../assets/su-predictors.png'
+// From MentalHealth_Jar.png, cropped to the jar and its four labels.
+import mentalHealthJar from '../assets/mental-health-jar.jpg'
+
+const CEREBRA_GUIDE = 'https://cerebra.org.uk/wp-content/uploads/2023/09/Mental-health-in-children-with-rare-gentic-conditions.pdf'
+const NORTON_BOOK = 'https://wwnorton.com/books/How-to-Talk-with-Families-About-Genetics-and-Psychiatric-Illness'
 
 // One entry per topic page, reached at #<slug>. `findings` are the topic's own highlights;
 // `connected` are findings from other topics, shown under "Connected from other topics".
-// Optional `figures` appear under the header, credited to a SOURCES key in `source`
-// (a placeholder shows until the citation is known).
+// Optional `figures` appear under the header (headed `figuresTitle`, default "The research at
+// a glance"), credited to a SOURCES key in `source` or to free text in `credit` (linked to
+// `creditUrl`); a placeholder shows until the citation is known. An optional `explainer` sits
+// beside the figures, and an optional `lede` appears under the page title.
 export const PAGES = {
   mh: {
     slug: 'mental-health',
@@ -69,6 +76,57 @@ export const PAGES = {
         title: 'FENTANYL: What You Need to Know',
         kind: 'Infographic · PDF · English / Español',
         url: 'https://abcdstudy.org/infographics/',
+      },
+    ],
+  },
+  gen: {
+    slug: 'genetics',
+    title: 'Genetics',
+    intro: "ABCD's 10 years of genetics and adolescent development",
+    lede: {
+      bold: 'ABCD uniquely contains large-scale genomic data.',
+      text: 'Genetic data from thousands of young people, alongside years of information about their brains, health and surroundings, lets researchers see how genes and experiences work together.',
+    },
+    findings: ['gen-destiny', 'gen-su', 'gen-cognition', 'gen-sleep', 'gen-ple'],
+    connected: ['mh-sleep', 'su-brain', 'mh-screens'],
+    figuresTitle: 'Understanding genetic risk: the mental health jar',
+    figures: [
+      {
+        src: mentalHealthJar,
+        width: 1200,
+        height: 740,
+        title: 'The mental health jar',
+        credit: 'Adapted from Peay & Austin (2011), How to Talk with Families About Genetics and Psychiatric Illness, W. W. Norton',
+        creditUrl: NORTON_BOOK,
+        alt: 'A jar partly filled with marbles. Pink marbles at the bottom are genetic factors and purple marbles on top are environmental factors; larger marbles have a moderate effect and smaller ones a small effect.',
+      },
+    ],
+    // Plain-language summary of the Mental Health Jar section of the Cerebra guide (pages 8–12),
+    // reworded rather than quoted.
+    explainer: {
+      intro: 'Everyone has a mental health jar. The fuller it gets, the more vulnerable a person is to a mental health condition. Three kinds of things shape how full it gets:',
+      terms: [
+        { term: 'Genetic factors', color: '#e85a6a', text: "The genes we're born with. Everyone has some, in different amounts, and they can't be changed." },
+        { term: 'Environmental factors', color: 'var(--violet)', text: 'Life experiences and stresses. These can build up over time, and some can be reduced or removed.' },
+        { term: 'Protective factors', color: 'var(--abcd-green)', text: 'Things that support wellbeing, like sleeping and eating well, time with friends and family, and hobbies. They make the jar bigger, so it takes more to fill.' },
+      ],
+      outro: "Each factor can be small or large, like the different-sized marbles in the jar. The same experience can take up more room in one person's jar than in another's, which is why genes alone can't tell us who will develop a mental health condition.",
+      sources: [
+        { title: 'Mental Health in Children with Rare Genetic Conditions: A Guide for Parents and Carers', note: "O'Donovan et al., 2023 · Cerebra and Cardiff University", url: CEREBRA_GUIDE },
+        { title: 'How to Talk with Families About Genetics and Psychiatric Illness', note: 'Peay & Austin, 2011 · W. W. Norton', url: NORTON_BOOK },
+      ],
+    },
+    resourcesTitle: 'Related reading',
+    resources: [
+      {
+        title: 'A decade of discovery: genomic data in the ABCD Study',
+        kind: 'Review paper · Hernandez et al., 2026',
+        url: 'https://doi.org/10.1016/j.dcn.2026.101723',
+      },
+      {
+        title: 'Mental Health in Children with Rare Genetic Conditions',
+        kind: 'Guide for families · PDF · Cerebra',
+        url: CEREBRA_GUIDE,
       },
     ],
   },

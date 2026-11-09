@@ -42,6 +42,8 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
 .page a.back { font-size:12px; color:var(--violet); font-weight:700; text-decoration:none; }
 .page .intro h1 { font-family:var(--font-head); font-weight:700; font-size:30px; line-height:1.15; margin:6px 0 8px; color:var(--abcd-navy); }
 .emblem-title { font-family:var(--font-head); font-weight:700; fill:var(--abcd-navy); }
+.page .intro .lede { font-size:14px; color:#333; margin:0 0 10px; max-width:640px; }
+.page .intro .lede b { color:var(--abcd-navy); }
 .page .stats { display:flex; gap:18px; font-size:12px; color:#555; }
 
 .page .body { display:flex; gap:18px; padding:12px 22px 18px; align-items:flex-start; }
@@ -108,6 +110,18 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
 .fig figcaption b { color:#1d1d1f; }
 .fig figcaption .todo { color:#999; font-style:italic; }
 .fig figcaption a { color:var(--violet); font-weight:600; text-decoration:none; white-space:nowrap; }
+.fig figcaption a.cite { white-space:normal; font-weight:400; }
+/* Plain-language key terms beside a figure. */
+.explain { flex:1 1 0; min-width:260px; font-size:13px; color:#222; }
+.explain p { margin:0 0 10px; }
+.explain dl { margin:0 0 10px; }
+.explain dt { display:flex; align-items:center; gap:8px; margin-top:10px; font-family:var(--font-head); font-weight:700; font-size:15px; color:var(--abcd-navy); }
+.explain dt i { width:12px; height:12px; border-radius:50%; background:var(--c); flex:none; }
+.explain dd { margin:2px 0 0 20px; }
+.explain .lab { margin-top:4px; }
+.explain ul { margin:4px 0 0; padding-left:16px; font-size:12px; color:#444; }
+.explain li { margin-bottom:4px; }
+.explain li a { color:var(--violet); font-weight:700; text-decoration:none; }
 .page .sec h3 { font-family:var(--font-head); font-size:21px; font-weight:700; margin:0 0 10px; color:var(--abcd-navy); }
 .thumbs { display:flex; gap:12px; flex-wrap:wrap; }
 /* Resource tiles fade from a 15% tint of the rainbow red to a 12% tint of the brand light blue. */
@@ -130,4 +144,5 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
   .thumb { width:calc(50% - 6px); box-sizing:border-box; }
   .figs { flex-direction:column; }
   .fig { flex:none; width:100%; box-sizing:border-box; }
+  .explain { flex:none; min-width:0; }
 }

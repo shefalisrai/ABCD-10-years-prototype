@@ -30,15 +30,40 @@ function themeRail(themes, hasConnected) {
     ${hasConnected ? '<div class="toggle" data-toggle>Show connected<i></i></div>' : ''}`
 }
 
+function credit(f) {
+  if (f.source) return esc(shortAuthors(f.source))
+  if (f.credit && f.creditUrl) return `<a class="cite" href="${f.creditUrl}" target="_blank" rel="noopener">${esc(f.credit)}</a>`
+  if (f.credit) return esc(f.credit)
+  return '<span class="todo">(need to put citation for images here)</span>'
+}
+
+// Key terms with a colored dot, then the sources the explainer is drawn from.
+function explainer(x) {
+  const terms = x.terms.map((t) => `<dt><i style="--c:${t.color}"></i>${esc(t.term)}</dt><dd>${esc(t.text)}</dd>`).join('')
+  const sources = x.sources
+    .map((s) => `<li><a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)} ↗</a> <span>${esc(s.note)}</span></li>`)
+    .join('')
+  return `
+    <aside class="explain">
+      <p>${esc(x.intro)}</p>
+      <dl>${terms}</dl>
+      <p>${esc(x.outro)}</p>
+      <div class="lab">Sources</div>
+      <ul>${sources}</ul>
+    </aside>`
+}
+
 // Workgroup figures side by side at a shared height (each grows by its aspect ratio);
-// clicking one opens it full size in a new tab.
-function figures(list) {
-  const items = list.map((f) => `
+// clicking one opens it full size in a new tab. The page's explainer, if any, sits beside them.
+function figures(page) {
+  const items = page.figures.map((f) => `
     <figure class="fig" style="--ar:${(f.width / f.height).toFixed(3)}">
       <a href="${f.src}" target="_blank" rel="noopener"><img src="${f.src}" width="${f.width}" height="${f.height}" alt="${esc(f.alt)}"></a>
-      <figcaption><b>${esc(f.title)}</b> · ${f.source ? esc(shortAuthors(f.source)) : '<span class="todo">(need to put citation for images here)</span>'} <a href="${f.src}" target="_blank" rel="noopener">View full size ↗</a></figcaption>
+      <figcaption><b>${esc(f.title)}</b> · ${credit(f)} · <a href="${f.src}" target="_blank" rel="noopener">View full size ↗</a></figcaption>
     </figure>`)
-  return `<div class="sec"><h3>The research at a glance</h3><div class="figs">${items.join('')}</div></div>`
+  const title = page.figuresTitle || 'The research at a glance'
+  const aside = page.explainer ? explainer(page.explainer) : ''
+  return `<div class="sec"><h3>${esc(title)}</h3><div class="figs">${items.join('')}${aside}</div></div>`
 }
 
 // Renders one topic page. `goTo(id)` is called when a connected finding lives on another page.
@@ -67,10 +92,11 @@ export function renderPage(page, goTo) {
       <div class="intro">
         <a class="back" href="#" data-placeholder>← Back to the map</a>
         <h1>${esc(page.intro)}</h1>
+        ${page.lede ? `<p class="lede"><b>${esc(page.lede.bold)}</b> ${esc(page.lede.text)}</p>` : ''}
         <div class="stats">${stats}</div>
       </div>
     </div>
-    ${page.figures ? figures(page.figures) : ''}
+    ${page.figures ? figures(page) : ''}
     <div class="body">
       <div class="rail">${themeRail(themes, hasConnected)}</div>
       <div class="grid">${cards}</div>
