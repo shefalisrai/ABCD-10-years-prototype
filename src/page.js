@@ -92,7 +92,6 @@ export function renderPage(page, goTo) {
       <div class="intro">
         <a class="back" href="#" data-placeholder>← Back to the map</a>
         <h1>${esc(page.intro)}</h1>
-        ${page.lede ? `<p class="lede"><b>${esc(page.lede.bold)}</b> ${esc(page.lede.text)}</p>` : ''}
         <div class="stats">${stats}</div>
       </div>
     </div>

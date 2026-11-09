@@ -11,7 +11,7 @@ const NORTON_BOOK = 'https://wwnorton.com/books/How-to-Talk-with-Families-About-
 // Optional `figures` appear under the header (headed `figuresTitle`, default "The research at
 // a glance"), credited to a SOURCES key in `source` or to free text in `credit` (linked to
 // `creditUrl`); a placeholder shows until the citation is known. An optional `explainer` sits
-// beside the figures, and an optional `lede` appears under the page title.
+// beside the figures.
 export const PAGES = {
   mh: {
     slug: 'mental-health',
@@ -83,10 +83,6 @@ export const PAGES = {
     slug: 'genetics',
     title: 'Genetics',
     intro: "ABCD's 10 years of genetics and adolescent development",
-    lede: {
-      bold: 'ABCD uniquely contains large-scale genomic data.',
-      text: 'Genetic data from thousands of young people, alongside years of information about their brains, health and surroundings, lets researchers see how genes and experiences work together.',
-    },
     findings: ['gen-destiny', 'gen-su', 'gen-cognition', 'gen-sleep', 'gen-ple'],
     connected: ['mh-sleep', 'su-brain', 'mh-screens'],
     figuresTitle: 'Understanding genetic risk: the mental health jar',
@@ -104,11 +100,11 @@ export const PAGES = {
     // Plain-language summary of the Mental Health Jar section of the Cerebra guide (pages 8–12),
     // reworded rather than quoted.
     explainer: {
-      intro: 'Everyone has a mental health jar. The fuller it gets, the more vulnerable a person is to a mental health condition. Three kinds of things shape how full it gets:',
+      intro: 'Everyone has a mental health jar. The fuller it gets, the more vulnerable a person is to a mental health condition.',
       terms: [
-        { term: 'Genetic factors', color: '#e85a6a', text: "The genes we're born with. Everyone has some, in different amounts, and they can't be changed." },
-        { term: 'Environmental factors', color: 'var(--violet)', text: 'Life experiences and stresses. These can build up over time, and some can be reduced or removed.' },
-        { term: 'Protective factors', color: 'var(--abcd-green)', text: 'Things that support wellbeing, like sleeping and eating well, time with friends and family, and hobbies. They make the jar bigger, so it takes more to fill.' },
+        { term: 'Genetic factors', color: '#e85a6a', text: "The genes we're born with that cannot be changed and are responsible for how we are built from the inside." },
+        { term: 'Environmental factors', color: 'var(--violet)', text: 'Life experiences and stresses. These can be reduced or removed entirely, and some can build up over time.' },
+        { term: 'Protective factors', color: 'var(--abcd-green)', text: 'These support wellbeing, like sleeping and eating well, time with friends and family, and hobbies. They make the jar itself bigger.' },
       ],
       outro: "Each factor can be small or large, like the different-sized marbles in the jar. The same experience can take up more room in one person's jar than in another's, which is why genes alone can't tell us who will develop a mental health condition.",
       sources: [
