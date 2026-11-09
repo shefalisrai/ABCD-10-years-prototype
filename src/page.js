@@ -38,35 +38,36 @@ function credit(f) {
   return '<span class="todo">(need to put citation for images here)</span>'
 }
 
-// Key terms with a colored dot, then the sources the explainer is drawn from.
+// Key terms with a colored dot, then (optionally) a closing line and the sources it draws on.
 function explainer(x) {
   const terms = x.terms.map((t) => `<dt><i style="--c:${t.color}"></i>${esc(t.term)}</dt><dd>${esc(t.text)}</dd>`).join('')
-  const sources = x.sources
+  const sources = (x.sources || [])
     .map((s) => `<li><a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)} ↗</a> <span>${esc(s.note)}</span></li>`)
     .join('')
   return `
     <aside class="explain">
       <p>${esc(x.intro)}</p>
       <dl>${terms}</dl>
-      <p>${esc(x.outro)}</p>
-      <div class="lab">Sources</div>
-      <ul>${sources}</ul>
+      ${x.outro ? `<p>${esc(x.outro)}</p>` : ''}
+      ${sources ? `<div class="lab">Sources</div><ul>${sources}</ul>` : ''}
     </aside>`
 }
 
-// Workgroup figures side by side at a shared height (each grows by its aspect ratio), or in
-// two columns when there are more than two; clicking one opens it full size in a new tab.
-// The page's explainer, if any, sits beside them.
-function figures(page) {
-  const items = page.figures.map((f) => `
+// Figures side by side at a shared height (each grows by its aspect ratio), or in two columns
+// when there are more than two; clicking one opens it full size in a new tab. An explainer,
+// if given, sits beside them.
+function figureSection(title, list, aside) {
+  const items = list.map((f) => `
     <figure class="fig" style="--ar:${(f.width / f.height).toFixed(3)}">
       <a href="${f.src}" target="_blank" rel="noopener"><img src="${f.src}" width="${f.width}" height="${f.height}" alt="${esc(f.alt)}"></a>
       <figcaption><b>${esc(f.title)}</b> · ${credit(f)} · <a href="${f.src}" target="_blank" rel="noopener">View full size ↗</a></figcaption>
     </figure>`)
-  const title = page.figuresTitle || 'The research at a glance'
-  const aside = page.explainer ? explainer(page.explainer) : ''
-  const layout = page.figures.length > 2 ? 'figs two-col' : 'figs'
-  return `<div class="sec"><h3>${esc(title)}</h3><div class="${layout}">${items.join('')}${aside}</div></div>`
+  const layout = list.length > 2 ? 'figs two-col' : 'figs'
+  return `<div class="sec"><h3>${esc(title)}</h3><div class="${layout}">${items.join('')}${aside ? explainer(aside) : ''}</div></div>`
+}
+
+function placeholder(text) {
+  return `<div class="sec"><div class="todo-card"><span class="lab">Placeholder</span>${esc(text)}</div></div>`
 }
 
 // Renders one topic page. `goTo(id)` is called when a connected finding lives on another page.
@@ -75,9 +76,7 @@ export function renderPage(page, goTo) {
   const ids = page.findings.concat(page.connected)
   const themes = GROUPS.filter((g) => ids.some((id) => FINDINGS[id].groups.includes(g)))
 
-  // A page's `todo` shows as a dashed placeholder after its own cards.
-  const todo = page.todo ? `<div class="todo-card"><span class="lab">Placeholder</span>${esc(page.todo)}</div>` : ''
-  const cards = page.findings.map((id) => card(id, false)).join('') + todo +
+  const cards = page.findings.map((id) => card(id, false)).join('') +
     (hasConnected
       ? '<div class="divider"><span class="lab" style="color:var(--violet)">Connected from other topics</span></div>' +
         page.connected.map((id) => card(id, true)).join('')
@@ -90,6 +89,18 @@ export function renderPage(page, goTo) {
         .map((r) => `<a class="thumb" href="${r.url}" target="_blank" rel="noopener">${esc(r.title)}<span>${esc(r.kind)}</span></a>`)
         .join('')}</div></div>`
     : ''
+  const body = `
+    <div class="body">
+      <div class="rail">${themeRail(themes, hasConnected)}</div>
+      <div class="grid">${cards}</div>
+    </div>`
+  // A page with `sections` shows each one's figure and explainer, then the cards (for the
+  // section marked `cards`) or a dashed placeholder (`todo`). Otherwise: figures, then cards.
+  const main = page.sections
+    ? page.sections
+        .map((s) => figureSection(s.title, [s.figure], s.explainer) + (s.cards ? body : '') + (s.todo ? placeholder(s.todo) : ''))
+        .join('')
+    : (page.figures ? figureSection(page.figuresTitle || 'The research at a glance', page.figures, page.explainer) : '') + body
 
   const el = document.createElement('div')
   el.className = 'page'
@@ -104,11 +115,7 @@ export function renderPage(page, goTo) {
         <div class="stats">${stats}</div>
       </div>
     </div>
-    ${page.figures ? figures(page) : ''}
-    <div class="body">
-      <div class="rail">${themeRail(themes, hasConnected)}</div>
-      <div class="grid">${cards}</div>
-    </div>
+    ${main}
     ${resources}`
 
   const state = { theme: 'All', showConnected: true }

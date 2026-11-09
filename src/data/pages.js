@@ -17,6 +17,8 @@ const NORTON_BOOK = 'https://wwnorton.com/books/How-to-Talk-with-Families-About-
 // a glance"), credited to a SOURCES key in `source` or to free text in `credit` (linked to
 // `creditUrl`), or described by `caption`; a placeholder shows until one is known. An optional `explainer` sits
 // beside the figures, and an optional `note` (with a "more info" link) sits under the title.
+// A page can instead list `sections`, each with a `figure`, an `explainer`, and either the
+// page's cards (`cards: true`) or a dashed `todo` placeholder.
 export const PAGES = {
   mh: {
     slug: 'mental-health',
@@ -147,44 +149,92 @@ export const PAGES = {
       text: 'An MRI (magnetic resonance imaging) scan is a safe way to get a clear picture of the brain.',
       link: { text: 'more info', href: 'https://abcdstudy.org/families/faqs/' },
     },
-    figuresTitle: 'How ABCD takes pictures of the brain',
-    figures: [
+    // One section per kind of scan: its image and explainer, then the cards or a placeholder.
+    sections: [
       {
-        src: taskFmri,
-        width: 1200,
-        height: 740,
-        title: 'Task fMRI',
-        caption: 'Which brain areas become more active while young people do a task.',
-        alt: 'A grey brain with glowing colored spots. Pink spots at the front and back of the brain are active during the memory task, a purple spot deep in the middle during the reward task, and mauve spots at the lower front and the cerebellum during the stopping task.',
+        title: 'Task fMRI: brain activity during a task',
+        figure: {
+          src: taskFmri,
+          width: 1200,
+          height: 740,
+          title: 'Task fMRI',
+          caption: 'Which brain areas become more active while young people do a task.',
+          alt: 'A grey brain with glowing colored spots. Pink spots at the front and back of the brain are active during the memory task, a purple spot deep in the middle during the reward task, and mauve spots at the lower front and the cerebellum during the stopping task.',
+        },
+        explainer: {
+          intro: 'During a task fMRI scan, young people do short computer tasks while the scanner tracks which brain areas become more active.',
+          terms: [
+            { term: 'Memory task', color: '#e6357c', text: 'Remembering pictures of faces and places. Areas at the front and back of the brain become more active.' },
+            { term: 'Reward task', color: '#7f1cee', text: 'Trying to win money or avoid losing it. Areas deep in the middle of the brain become more active.' },
+            { term: 'Stopping task', color: '#b02f84', text: 'Stopping an action at the last moment. Areas at the lower front of the brain and in the cerebellum become more active.' },
+          ],
+        },
+        cards: true,
       },
       {
-        src: restingFmri,
-        width: 1200,
-        height: 740,
-        title: 'Resting-state fMRI (rs-fMRI)',
-        caption: 'Which brain areas work in sync while young people rest.',
-        alt: 'A grey brain with two networks of glowing areas, one pink and one purple. Lines join the areas in each network to show that they share the same pattern of brain activity, even without a task.',
+        title: 'Resting-state fMRI (rs-fMRI): brain activity at rest',
+        figure: {
+          src: restingFmri,
+          width: 1200,
+          height: 740,
+          title: 'Resting-state fMRI (rs-fMRI)',
+          caption: 'Which brain areas work in sync while young people rest.',
+          alt: 'A grey brain with two networks of glowing areas, one pink and one purple. Lines join the areas in each network to show that they share the same pattern of brain activity, even without a task.',
+        },
+        explainer: {
+          intro: 'During a resting-state scan, young people lie still and look at a cross on a screen, without doing a task.',
+          terms: [
+            { term: 'One network', color: '#e6357c', text: 'Brain areas that share the same pattern of activity, rising and falling together.' },
+            { term: 'Another network', color: '#7d63b3', text: 'A different set of areas with its own shared pattern.' },
+          ],
+          outro: 'Seeing which areas work in sync helps researchers understand how the brain is organized as it develops.',
+        },
+        todo: 'Need to add rs-fMRI results.',
       },
       {
-        src: diffusionMri,
-        width: 1200,
-        height: 740,
-        title: 'Diffusion MRI',
-        caption: "The pathways that connect brain areas, the brain's wiring.",
-        alt: 'A grey brain with bundles of colored lines: a pink pathway arching from the front to the back of the brain, a short mauve pathway linking nearby areas, and a purple pathway running down to the brainstem and the body.',
+        title: "Diffusion MRI: the brain's wiring",
+        figure: {
+          src: diffusionMri,
+          width: 1200,
+          height: 740,
+          title: 'Diffusion MRI',
+          caption: "The pathways that connect brain areas, the brain's wiring.",
+          alt: 'A grey brain with bundles of colored lines: a pink pathway arching from the front to the back of the brain, a short mauve pathway linking nearby areas, and a purple pathway running down to the brainstem and the body.',
+        },
+        explainer: {
+          intro: "Diffusion MRI tracks how water moves through the brain. Water moves most easily along the brain's wiring, called white matter, so the scan can map the pathways that connect brain areas.",
+          terms: [
+            { term: 'Long pathways', color: '#e6357c', text: 'Link areas at the front and back of the brain.' },
+            { term: 'Short pathways', color: '#b02f84', text: 'Link areas that are close to each other.' },
+            { term: 'Pathways to the body', color: '#7d63b3', text: 'Carry signals between the brain and the rest of the body.' },
+          ],
+        },
+        todo: 'Need to add diffusion MRI results.',
       },
       {
-        src: structuralMri,
-        width: 1200,
-        height: 740,
-        title: 'Structural MRI',
-        caption: 'The size, thickness, and shape of brain areas.',
-        alt: "A grey brain with each lobe tinted a different color (frontal, parietal, occipital, and temporal lobes, and the cerebellum), and an arrow across the top showing the brain's overall size.",
+        title: "Structural MRI: the brain's size and shape",
+        figure: {
+          src: structuralMri,
+          width: 1200,
+          height: 740,
+          title: 'Structural MRI',
+          caption: 'The size, thickness, and shape of brain areas.',
+          alt: "A grey brain with each lobe tinted a different color (frontal, parietal, occipital, and temporal lobes, and the cerebellum), and an arrow across the top showing the brain's overall size.",
+        },
+        explainer: {
+          intro: 'A structural MRI scan takes a detailed 3D picture of the brain, so researchers can measure the size, thickness, and shape of each area.',
+          terms: [
+            { term: 'Frontal lobe', color: '#e6357c', text: 'Planning, making decisions, and self-control.' },
+            { term: 'Parietal lobe', color: '#7d63b3', text: 'Sensing touch and knowing where things are around us.' },
+            { term: 'Occipital lobe', color: '#7f1cee', text: 'Making sense of what we see.' },
+            { term: 'Temporal lobe', color: '#b02f84', text: 'Hearing, memory, and understanding language.' },
+            { term: 'Cerebellum', color: '#7d63b3', text: 'Balance and smooth, coordinated movement.' },
+          ],
+        },
+        todo: 'Need to add structural MRI results.',
       },
     ],
     findings: ['img-change', 'img-cognition', 'img-memory', 'img-inhibition', 'img-reward', 'img-puberty', 'img-neighborhood', 'img-adversity'],
-    // The cards so far cover task fMRI only.
-    todo: 'Need to add rs-fMRI, diffusion MRI, and structural MRI results.',
     connected: ['mh-complex', 'mh-adversity', 'su-social', 'su-brain'],
   },
 }
