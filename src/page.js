@@ -31,6 +31,7 @@ function themeRail(themes, hasConnected) {
 }
 
 function credit(f) {
+  if (f.caption) return esc(f.caption)
   if (f.source) return esc(shortAuthors(f.source))
   if (f.credit && f.creditUrl) return `<a class="cite" href="${f.creditUrl}" target="_blank" rel="noopener">${esc(f.credit)}</a>`
   if (f.credit) return esc(f.credit)
@@ -53,8 +54,9 @@ function explainer(x) {
     </aside>`
 }
 
-// Workgroup figures side by side at a shared height (each grows by its aspect ratio);
-// clicking one opens it full size in a new tab. The page's explainer, if any, sits beside them.
+// Workgroup figures side by side at a shared height (each grows by its aspect ratio), or in
+// two columns when there are more than two; clicking one opens it full size in a new tab.
+// The page's explainer, if any, sits beside them.
 function figures(page) {
   const items = page.figures.map((f) => `
     <figure class="fig" style="--ar:${(f.width / f.height).toFixed(3)}">
@@ -63,7 +65,8 @@ function figures(page) {
     </figure>`)
   const title = page.figuresTitle || 'The research at a glance'
   const aside = page.explainer ? explainer(page.explainer) : ''
-  return `<div class="sec"><h3>${esc(title)}</h3><div class="figs">${items.join('')}${aside}</div></div>`
+  const layout = page.figures.length > 2 ? 'figs two-col' : 'figs'
+  return `<div class="sec"><h3>${esc(title)}</h3><div class="${layout}">${items.join('')}${aside}</div></div>`
 }
 
 // Renders one topic page. `goTo(id)` is called when a connected finding lives on another page.

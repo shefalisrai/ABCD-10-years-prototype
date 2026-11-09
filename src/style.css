@@ -107,6 +107,8 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
 
 .page .sec { padding:6px 22px 22px; }
 .figs { display:flex; gap:20px; align-items:flex-start; }
+.figs.two-col { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); }
+.figs.two-col .fig { flex:none; }
 .fig { flex:var(--ar) 1 0; min-width:0; margin:0; padding:10px; border:1px solid #e3e3e8; border-radius:14px; background:#fff; }
 .fig img { display:block; width:100%; height:auto; border-radius:8px; }
 .fig figcaption { font-size:12px; color:#555; margin-top:8px; }
@@ -146,6 +148,7 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
   .grid { grid-template-columns:1fr; }
   .thumb { width:calc(50% - 6px); box-sizing:border-box; }
   .figs { flex-direction:column; }
+  .figs.two-col { grid-template-columns:1fr; }
   .fig { flex:none; width:100%; box-sizing:border-box; }
   .explain { flex:none; min-width:0; }
 }

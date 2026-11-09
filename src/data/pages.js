@@ -2,6 +2,11 @@ import suPublications from '../assets/su-publications.png'
 import suPredictors from '../assets/su-predictors.png'
 // From MentalHealth_Jar.png, cropped to the jar and its four labels.
 import mentalHealthJar from '../assets/mental-health-jar.jpg'
+// Drawn by scripts/imaging_art.py from Greybrain.svg and the theme bubbles.
+import taskFmri from '../assets/imaging-task-fmri.svg'
+import restingFmri from '../assets/imaging-resting-fmri.svg'
+import diffusionMri from '../assets/imaging-diffusion-mri.svg'
+import structuralMri from '../assets/imaging-structural-mri.svg'
 
 const CEREBRA_GUIDE = 'https://cerebra.org.uk/wp-content/uploads/2023/09/Mental-health-in-children-with-rare-gentic-conditions.pdf'
 const NORTON_BOOK = 'https://wwnorton.com/books/How-to-Talk-with-Families-About-Genetics-and-Psychiatric-Illness'
@@ -10,7 +15,7 @@ const NORTON_BOOK = 'https://wwnorton.com/books/How-to-Talk-with-Families-About-
 // `connected` are findings from other topics, shown under "Connected from other topics".
 // Optional `figures` appear under the header (headed `figuresTitle`, default "The research at
 // a glance"), credited to a SOURCES key in `source` or to free text in `credit` (linked to
-// `creditUrl`); a placeholder shows until the citation is known. An optional `explainer` sits
+// `creditUrl`), or described by `caption`; a placeholder shows until one is known. An optional `explainer` sits
 // beside the figures, and an optional `note` (with a "more info" link) sits under the title.
 export const PAGES = {
   mh: {
@@ -142,6 +147,41 @@ export const PAGES = {
       text: 'An MRI (magnetic resonance imaging) scan is a safe way to get a clear picture of the brain.',
       link: { text: 'more info', href: 'https://abcdstudy.org/families/faqs/' },
     },
+    figuresTitle: 'How ABCD takes pictures of the brain',
+    figures: [
+      {
+        src: taskFmri,
+        width: 1200,
+        height: 740,
+        title: 'Task fMRI',
+        caption: 'Which brain areas become more active while young people do a task.',
+        alt: 'A grey brain with glowing colored spots. Pink spots at the front and back of the brain are active during the memory task, a purple spot deep in the middle during the reward task, and mauve spots at the lower front and the cerebellum during the stopping task.',
+      },
+      {
+        src: restingFmri,
+        width: 1200,
+        height: 740,
+        title: 'Resting-state fMRI (rs-fMRI)',
+        caption: 'Which brain areas work in sync while young people rest.',
+        alt: 'A grey brain with two networks of glowing areas, one pink and one purple. Lines join the areas in each network to show that they share the same pattern of brain activity, even without a task.',
+      },
+      {
+        src: diffusionMri,
+        width: 1200,
+        height: 740,
+        title: 'Diffusion MRI',
+        caption: "The pathways that connect brain areas, the brain's wiring.",
+        alt: 'A grey brain with bundles of colored lines: a pink pathway arching from the front to the back of the brain, a short mauve pathway linking nearby areas, and a purple pathway running down to the brainstem and the body.',
+      },
+      {
+        src: structuralMri,
+        width: 1200,
+        height: 740,
+        title: 'Structural MRI',
+        caption: 'The size, thickness, and shape of brain areas.',
+        alt: "A grey brain with each lobe tinted a different color (frontal, parietal, occipital, and temporal lobes, and the cerebellum), and an arrow across the top showing the brain's overall size.",
+      },
+    ],
     findings: ['img-change', 'img-cognition', 'img-memory', 'img-inhibition', 'img-reward', 'img-puberty', 'img-neighborhood', 'img-adversity'],
     // The cards so far cover task fMRI only.
     todo: 'Need to add rs-fMRI, diffusion MRI, and structural MRI results.',
