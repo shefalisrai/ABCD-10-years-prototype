@@ -11,10 +11,11 @@
   --abcd-blue: #3358a8;
   --abcd-sky: #3aaee3;
   --abcd-navy: #24336a;
-  --violet: #8d50a0;      /* brand secondary purple: borders, rings, links */
-  --violet-ink: #6a3c78;  /* that purple 25% darker, for small text on purple tints */
-  --violet-20: #e8dcec;   /* 20% tint */
-  --violet-10: #f4eef6;   /* 10% tint */
+  /* Guide colors are used exactly as given. Other colors are only tints of them, lightened
+     so the guide colors stay readable on top. */
+  --violet: #8d50a0;      /* brand secondary purple: text, borders, rings, links */
+  --violet-20: #e8dcec;   /* 20% tint, for borders */
+  --violet-10: #f4eef6;   /* 10% tint, behind purple text (4.9:1 contrast) */
 
   /* The rainbow keeps the design's red and yellow (the brand has neither) and takes its
      green, light blue, blue and purple from the style guide. */
@@ -28,7 +29,7 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
 .mockbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding:10px 22px; background:#f5f5f7; border-bottom:1px solid #e3e3e8; }
 .mockbar .lab { margin-right:4px; }
 .mockbar a { font:700 14px var(--font-body); padding:8px 16px; border-radius:999px; border:2px solid #d1d1d6; background:#fff; color:#1d1d1f; text-decoration:none; }
-.mockbar a.on { border-color:var(--violet); background:var(--violet-10); color:var(--violet-ink); }
+.mockbar a.on { border-color:var(--violet); background:var(--violet-10); color:var(--violet); }
 
 .page { max-width:1200px; margin:0 auto; font-size:13px; line-height:1.45; }
 .page .nav { display:flex; gap:18px; align-items:center; padding:12px 22px; border-bottom:1px solid #eee; font-size:12px; color:#555; }
@@ -38,7 +39,7 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
 .page .nav b { font-family:var(--font-head); font-size:15px; color:var(--abcd-navy); margin-right:auto; padding-left:18px; border-left:1px solid #e3e3e8; white-space:nowrap; }
 .page .nav b sup { font-size:.55em; }
 .page .head { display:flex; gap:26px; align-items:center; padding:18px 22px 6px; }
-.page .back { font-size:12px; color:var(--violet); font-weight:700; text-decoration:none; }
+.page a.back { font-size:12px; color:var(--violet); font-weight:700; text-decoration:none; }
 .page .intro h1 { font-family:var(--font-head); font-weight:700; font-size:30px; line-height:1.15; margin:6px 0 8px; color:var(--abcd-navy); }
 .emblem-title { font-family:var(--font-head); font-weight:700; fill:var(--abcd-navy); }
 .page .stats { display:flex; gap:18px; font-size:12px; color:#555; }
@@ -76,7 +77,7 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
 .fcard.ext .face.front { background: linear-gradient(#fbf8fc,#fbf8fc) padding-box, linear-gradient(90deg, var(--rainbow)) border-box; }
 .face.back { transform:rotateY(180deg); background: linear-gradient(160deg,#faf6fb,#f0f9fd) padding-box, linear-gradient(90deg, var(--rainbow-rev)) border-box; overflow-y:auto; }
 .tags { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:8px; }
-.tag { font-family:var(--font-head); font-size:13px; padding:2px 10px; border-radius:999px; background:var(--violet-20); color:var(--violet-ink); }
+.tag { font-family:var(--font-head); font-size:13px; padding:2px 10px; border-radius:999px; background:var(--violet-10); color:var(--violet); }
 .statement { font-weight:700; font-size:14.5px; line-height:1.3; color:#111; margin-bottom:10px; }
 .hl-lab { font-weight:700; color:var(--violet); font-size:13px; margin-bottom:2px; }
 .hl { font-size:13px; color:#111; }
@@ -84,9 +85,9 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
 .fliphint { font-size:12px; color:var(--violet); font-weight:600; margin-bottom:8px; }
 .foot { display:flex; justify-content:space-between; gap:8px; font-size:11.5px; color:#444; border-top:2px dashed #cfcfd4; padding-top:8px; }
 .foot b { color:var(--violet); white-space:nowrap; }
-.back-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
-.back-top .hand { font-size:17px; color:var(--violet-ink); }
-.back-top .x { font-size:12px; color:var(--violet); font-weight:600; }
+.back-top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:6px; }
+.back-top .hand { font-size:16px; line-height:1.2; color:var(--violet); }
+.back-top .x { flex:none; white-space:nowrap; margin-top:2px; font-size:12px; color:var(--violet); font-weight:600; }
 .exp { font-size:12px; margin:0 0 10px; color:#222; }
 .face ul { margin:4px 0 10px; padding-left:16px; font-size:11.5px; color:#333; }
 .face ul li { margin-bottom:5px; }
@@ -109,7 +110,8 @@ body { margin:0; background:#fff; color:#1d1d1f; font-family:var(--font-body); }
 .fig figcaption a { color:var(--violet); font-weight:600; text-decoration:none; white-space:nowrap; }
 .page .sec h3 { font-family:var(--font-head); font-size:21px; font-weight:700; margin:0 0 10px; color:var(--abcd-navy); }
 .thumbs { display:flex; gap:12px; flex-wrap:wrap; }
-.thumb { width:190px; min-height:100px; border-radius:14px; background: linear-gradient(135deg,#fde7ef,#e6f6ff); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:#444; text-align:center; padding:10px; text-decoration:none; }
+/* Resource tiles fade from a 15% tint of the rainbow red to a 12% tint of the brand light blue. */
+.thumb { width:190px; min-height:100px; border-radius:14px; background: linear-gradient(135deg,#fce6e9,#e7f5fc); display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:#444; text-align:center; padding:10px; text-decoration:none; }
 .thumb span { font-weight:400; font-size:10.5px; color:#777; margin-top:4px; }
 
 /* Phones: emblem above the intro, theme bubbles in a scrolling row above the cards. */
