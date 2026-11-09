@@ -81,9 +81,9 @@ export function renderPage(page, goTo) {
       : '')
   const stats = `<span><b>${page.findings.length}</b> ${esc(page.title)} highlights</span>` +
     (hasConnected ? `<span><b>${page.connected.length}</b> connected from other topics</span>` : '')
-  // The resources section only appears when the page lists some.
+  // "Related reading" (infographics, data briefs, and other links) only appears when the page lists some.
   const resources = page.resources?.length
-    ? `<div class="sec"><h3>${esc(page.resourcesTitle)}</h3><div class="thumbs">${page.resources
+    ? `<div class="sec"><h3>Related reading</h3><div class="thumbs">${page.resources
         .map((r) => `<a class="thumb" href="${r.url}" target="_blank" rel="noopener">${esc(r.title)}<span>${esc(r.kind)}</span></a>`)
         .join('')}</div></div>`
     : ''
@@ -97,6 +97,7 @@ export function renderPage(page, goTo) {
       <div class="intro">
         <a class="back" href="#" data-placeholder>← Back to the map</a>
         <h1>${esc(page.intro)}</h1>
+        ${page.note ? `<p class="note"><b>${esc(page.note.lead)}</b> ${esc(page.note.text)} (<a href="${page.note.link.href}" target="_blank" rel="noopener">${esc(page.note.link.text)} ↗</a>)</p>` : ''}
         <div class="stats">${stats}</div>
       </div>
     </div>

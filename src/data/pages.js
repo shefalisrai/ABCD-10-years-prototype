@@ -11,7 +11,7 @@ const NORTON_BOOK = 'https://wwnorton.com/books/How-to-Talk-with-Families-About-
 // Optional `figures` appear under the header (headed `figuresTitle`, default "The research at
 // a glance"), credited to a SOURCES key in `source` or to free text in `credit` (linked to
 // `creditUrl`); a placeholder shows until the citation is known. An optional `explainer` sits
-// beside the figures.
+// beside the figures, and an optional `note` (with a "more info" link) sits under the title.
 export const PAGES = {
   mh: {
     slug: 'mental-health',
@@ -19,7 +19,6 @@ export const PAGES = {
     intro: "ABCD's 10 years of adolescent mental health",
     findings: ['mh-activity', 'mh-screens', 'mh-sleep', 'mh-complex', 'mh-adversity', 'mh-prenatal'],
     connected: ['ffc-family', 'ffc-school', 'ffc-unfair', 'gen-ple'],
-    resourcesTitle: 'Related infographics & data briefs',
     resources: [
       {
         title: 'The Importance of Sleep for Youth',
@@ -65,8 +64,12 @@ export const PAGES = {
         alt: 'Wheel of predictors of early substance use initiation in nine areas: physical health and screen time, sociocultural factors, parenting factors, brain features, genetics, psychopathology, personality, and cognition, with arrows showing the direction of each link.',
       },
     ],
-    resourcesTitle: 'Related infographics',
     resources: [
+      {
+        title: 'Substance Use Information and Resources',
+        kind: 'Youth resources · ABCD Study',
+        url: 'https://abcdstudy.org/youth-resources/youth-resources-prevention/',
+      },
       {
         title: 'Teen Substance Use: Insights From the ABCD Study®',
         kind: 'Infographic · PDF · English / Español',
@@ -112,7 +115,6 @@ export const PAGES = {
         { title: 'How to Talk with Families About Genetics and Psychiatric Illness', note: 'Peay & Austin, 2011 · W. W. Norton', url: NORTON_BOOK },
       ],
     },
-    resourcesTitle: 'Related reading',
     resources: [
       {
         title: 'Genetic Testing and Results',
@@ -135,6 +137,11 @@ export const PAGES = {
     slug: 'brain-imaging',
     title: 'Brain Imaging',
     intro: "ABCD's 10 years of adolescent brain imaging",
+    note: {
+      lead: 'What is an MRI?',
+      text: 'An MRI (magnetic resonance imaging) scan is a safe way to get a clear picture of the brain.',
+      link: { text: 'more info', href: 'https://abcdstudy.org/families/faqs/' },
+    },
     findings: ['img-change', 'img-cognition', 'img-memory', 'img-inhibition', 'img-reward', 'img-puberty', 'img-neighborhood', 'img-adversity'],
     // The cards so far cover task fMRI only.
     todo: 'Need to add rs-fMRI, diffusion MRI, and structural MRI results.',
