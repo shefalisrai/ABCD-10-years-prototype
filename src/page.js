@@ -1,6 +1,9 @@
 import { FINDINGS, GROUPS } from './data/findings.js'
 import { card, esc, shortAuthors } from './card.js'
 import logoUrl from './assets/brain-rainbow.svg'
+// ABCD graphic depicter (graphic, word mark and tagline), taken from the July 2024 style
+// guide PDF. Swap in the master file from Confluence before this goes live.
+import abcdLogoUrl from './assets/abcd-logo.png'
 
 // The Greybrainrainbow.svg logo (580 x 591 viewBox, disc centred near 290,296)
 // with the topic name set on an arc in the space above the brain.
@@ -9,7 +12,7 @@ function emblem(slug, title) {
     <svg width="270" height="275" viewBox="0 0 580 591.11" aria-label="${esc(title)}">
       <defs><path id="arc-${slug}" d="M 60 296 A 230 230 0 0 1 520 296"/></defs>
       <image href="${logoUrl}" x="0" y="0" width="580" height="591.11"/>
-      <text font-family="Anca, Patrick Hand SC, cursive" font-size="68" fill="#1d1d1f" letter-spacing="0.5">
+      <text class="emblem-title" font-size="64">
         <textPath href="#arc-${slug}" startOffset="50%" text-anchor="middle">${esc(title)}</textPath>
       </text>
     </svg>`
@@ -46,7 +49,7 @@ export function renderPage(page, goTo) {
 
   const cards = page.findings.map((id) => card(id, false)).join('') +
     (hasConnected
-      ? '<div class="divider"><span class="lab" style="color:#8a3fd1">Connected from other topics</span></div>' +
+      ? '<div class="divider"><span class="lab" style="color:var(--violet)">Connected from other topics</span></div>' +
         page.connected.map((id) => card(id, true)).join('')
       : '')
   const stats = `<span><b>${page.findings.length}</b> ${esc(page.title)} highlights</span>` +
@@ -58,7 +61,7 @@ export function renderPage(page, goTo) {
   const el = document.createElement('div')
   el.className = 'page'
   el.innerHTML = `
-    <div class="nav"><b>ABCD Study® · 10 Years</b><span>About</span><span>Families</span><span>Scientists</span><span>News</span></div>
+    <div class="nav"><img class="logo" src="${abcdLogoUrl}" width="640" height="283" alt="Adolescent Brain Cognitive Development Study. Teen Brains. Today's Science. Brighter Future."><b>ABCD Study<sup>®</sup> · 10 Years</b><span>About</span><span>Families</span><span>Scientists</span><span>News</span></div>
     <div class="head">
       ${emblem(page.slug, page.title)}
       <div class="intro">
