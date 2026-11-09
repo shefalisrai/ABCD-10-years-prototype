@@ -62,7 +62,7 @@ export const PAGES = {
         width: 746,
         height: 742,
         title: 'Predictors of early substance use initiation',
-        alt: 'Wheel of predictors of early substance use initiation in nine areas: physical health and screen time, sociocultural factors, parenting factors, brain features, genetics, psychopathology, personality and cognition, with arrows showing the direction of each link.',
+        alt: 'Wheel of predictors of early substance use initiation in nine areas: physical health and screen time, sociocultural factors, parenting factors, brain features, genetics, psychopathology, personality, and cognition, with arrows showing the direction of each link.',
       },
     ],
     resourcesTitle: 'Related infographics',
@@ -115,6 +115,11 @@ export const PAGES = {
     resourcesTitle: 'Related reading',
     resources: [
       {
+        title: 'Genetic Testing and Results',
+        kind: 'Youth resources · ABCD Study',
+        url: 'https://abcdstudy.org/youth-resources/youth-resources-genetic-testing/',
+      },
+      {
         title: 'A decade of discovery: genomic data in the ABCD Study',
         kind: 'Review paper · Hernandez et al., 2026',
         url: 'https://doi.org/10.1016/j.dcn.2026.101723',
@@ -125,5 +130,14 @@ export const PAGES = {
         url: CEREBRA_GUIDE,
       },
     ],
+  },
+  img: {
+    slug: 'brain-imaging',
+    title: 'Brain Imaging',
+    intro: "ABCD's 10 years of adolescent brain imaging",
+    findings: ['img-change', 'img-cognition', 'img-memory', 'img-inhibition', 'img-reward', 'img-puberty', 'img-neighborhood', 'img-adversity'],
+    // The cards so far cover task fMRI only.
+    todo: 'Need to add rs-fMRI, diffusion MRI, and structural MRI results.',
+    connected: ['mh-complex', 'mh-adversity', 'su-social', 'su-brain'],
   },
 }

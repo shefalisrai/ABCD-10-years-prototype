@@ -72,16 +72,21 @@ export function renderPage(page, goTo) {
   const ids = page.findings.concat(page.connected)
   const themes = GROUPS.filter((g) => ids.some((id) => FINDINGS[id].groups.includes(g)))
 
-  const cards = page.findings.map((id) => card(id, false)).join('') +
+  // A page's `todo` shows as a dashed placeholder after its own cards.
+  const todo = page.todo ? `<div class="todo-card"><span class="lab">Placeholder</span>${esc(page.todo)}</div>` : ''
+  const cards = page.findings.map((id) => card(id, false)).join('') + todo +
     (hasConnected
       ? '<div class="divider"><span class="lab" style="color:var(--violet)">Connected from other topics</span></div>' +
         page.connected.map((id) => card(id, true)).join('')
       : '')
   const stats = `<span><b>${page.findings.length}</b> ${esc(page.title)} highlights</span>` +
     (hasConnected ? `<span><b>${page.connected.length}</b> connected from other topics</span>` : '')
-  const resources = page.resources
-    .map((r) => `<a class="thumb" href="${r.url}" target="_blank" rel="noopener">${esc(r.title)}<span>${esc(r.kind)}</span></a>`)
-    .join('')
+  // The resources section only appears when the page lists some.
+  const resources = page.resources?.length
+    ? `<div class="sec"><h3>${esc(page.resourcesTitle)}</h3><div class="thumbs">${page.resources
+        .map((r) => `<a class="thumb" href="${r.url}" target="_blank" rel="noopener">${esc(r.title)}<span>${esc(r.kind)}</span></a>`)
+        .join('')}</div></div>`
+    : ''
 
   const el = document.createElement('div')
   el.className = 'page'
@@ -100,7 +105,7 @@ export function renderPage(page, goTo) {
       <div class="rail">${themeRail(themes, hasConnected)}</div>
       <div class="grid">${cards}</div>
     </div>
-    <div class="sec"><h3>${esc(page.resourcesTitle)}</h3><div class="thumbs">${resources}</div></div>`
+    ${resources}`
 
   const state = { theme: 'All', showConnected: true }
   const rings = el.querySelectorAll('.rail .ring')

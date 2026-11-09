@@ -26,6 +26,13 @@ function sourceItem(key) {
 
 // A flip card: the front has the bold statement and the ABCD highlight; the back holds
 // the combined detail, every source it draws on, and links to its connected findings.
+// The highlight's `highlightLink.text`, if set, becomes a link to `highlightLink.href`.
+function highlight(f) {
+  const html = esc(f.highlight)
+  const link = f.highlightLink
+  return link ? html.replace(esc(link.text), `<a href="${link.href}">${esc(link.text)}</a>`) : html
+}
+
 export function card(id, fromOtherTopic) {
   const f = FINDINGS[id]
   const tags = f.themes.map((t) => `<span class="tag">${esc(t)}</span>`).join('')
@@ -45,7 +52,7 @@ export function card(id, fromOtherTopic) {
           <div class="tags">${tags}</div>
           <div class="statement">${esc(f.statement)}</div>
           <div class="hl-lab">ABCD highlights</div>
-          <div class="hl">${esc(f.highlight)}</div>
+          <div class="hl">${highlight(f)}</div>
           <div class="spacer"></div>
           <div class="fliphint">Flip to see the research behind this ↻</div>
           <div class="foot"><span>${topicLabel(f.topic)}</span><b>${f.connected.length} connected →</b></div>
