@@ -141,9 +141,9 @@ export const PAGES = {
     ],
   },
   img: {
-    slug: 'brain-imaging',
-    title: 'Brain Imaging',
-    intro: "ABCD's 10 years of adolescent brain imaging",
+    slug: 'imaging',
+    title: 'Imaging',
+    intro: "ABCD's 10 years of adolescent imaging",
     note: {
       lead: 'What is an MRI?',
       text: 'An MRI (magnetic resonance imaging) scan is a safe way to get a clear picture of the brain.',

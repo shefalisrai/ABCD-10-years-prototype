@@ -160,7 +160,7 @@ export const FINDINGS = {
     connected: ['mh-complex', 'ffc-unfair', 'gen-su'],
   },
 
-  // Brain Imaging (statements as written in Imaging_Written_Overviews.docx; the rest in plain language)
+  // Imaging (statements as written in Imaging_Written_Overviews.docx; the rest in plain language)
   'img-change': {
     topic: 'img',
     groups: ['Brain'],

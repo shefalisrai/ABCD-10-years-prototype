@@ -26,8 +26,12 @@ function goTo(id) {
 }
 
 // Routes: #mental-health, #substance-use, and #<slug>/<finding id> to jump to a card.
+// Old page addresses that still work.
+const RENAMED = { 'brain-imaging': 'imaging' }
+
 function route() {
-  const [slug, focusId] = location.hash.slice(1).split('/')
+  const [hashSlug, focusId] = location.hash.slice(1).split('/')
+  const slug = RENAMED[hashSlug] || hashSlug
   const page = pages.find((p) => p.slug === slug) || pages[0]
   if (current?.page !== page) {
     const view = renderPage(page, goTo)

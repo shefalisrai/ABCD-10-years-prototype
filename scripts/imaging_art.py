@@ -1,4 +1,4 @@
-"""Draws the four Brain Imaging illustrations (task fMRI, resting-state fMRI, diffusion MRI,
+"""Draws the four Imaging illustrations (task fMRI, resting-state fMRI, diffusion MRI,
 structural MRI) in the style of the mental health jar: beige background, colored labels,
 and smooth black arrows. The brain is scripts/art/Greybrain.svg and the nodes are the theme
 bubbles (src/assets/bubble.svg), ringed in each label's color.
